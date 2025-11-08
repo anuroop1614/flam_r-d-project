@@ -1,0 +1,46 @@
+================================================================================
+PARAMETRIC CURVE MODEL EQUATIONS
+================================================================================
+
+Main Parametric Equations:
+--------------------------
+x(t) = t·cos(θ) - e^(M|t|)·sin(0.3t)·sin(θ) + X
+y(t) = 42 + t·sin(θ) + e^(M|t|)·sin(0.3t)·cos(θ)
+
+Where:
+  t = parameter (typically 6 ≤ t ≤ 60)
+  θ = rotation angle in radians (fitted in degrees: 0.1° to 49.9°)
+  X = horizontal shift (0 to 100)
+  M = exponential modulation parameter (-0.05 to 0.05)
+  42 = fixed vertical offset
+
+================================================================================
+Coordinate Transformation (Inverse):
+-------------------------------------
+Given (x, y), transform to rotated coordinates (t, v):
+
+t = (x - X)·cos(θ) + (y - 42)·sin(θ)
+v = -(x - X)·sin(θ) + (y - 42)·cos(θ)
+
+Where:
+  t = coordinate along main direction
+  v = coordinate perpendicular to main direction (should match: e^(M|t|)·sin(0.3t))
+
+================================================================================
+Model Constraint:
+-----------------
+In the rotated coordinate system:
+  v(t) = e^(M|t|)·sin(0.3t)
+
+This means the perpendicular deviation follows an exponentially modulated sine wave.
+
+================================================================================
+LaTeX/Desmos Format:
+--------------------
+\left(t*\cos(\theta)-e^{M\left|t\right|}\cdot\sin(0.3t)\sin(\theta)+X,
+     42+t*\sin(\theta)+e^{M\left|t\right|}\cdot\sin(0.3t)\cos(\theta)\right)
+
+(Replace θ, M, X with fitted values)
+
+================================================================================
+
